@@ -11,6 +11,9 @@
 \usepackage{amssymb}
 \usepackage{tabularx}
 \usepackage{float}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins}
+\usepackage{tikz}
 \DeclareTextSymbol{\cyrm}{\LastDeclaredEncoding}{236}
 \DeclareTextSymbol{\cyrk}{\LastDeclaredEncoding}{234}
 \graphicspath{ {./images/} }
@@ -28,14 +31,6 @@
 \newcommand{\tabularII}[1]{\begin{center}\begin{tabular}{|c|c|} #1 \end{tabular}\end{center}}
 \newcommand{\tabularIII}[1]{\begin{center}\begin{tabular}{|c|c|c|} #1 \end{tabular}\end{center}}
 
-\newcommand{\mathhelp}[1]{\textbf{\colorbox[rgb]{0.9,0.9,1}{Математическая справка}}. #1}
-\newcommand{\stat}[1]{\textbf{Утверждение}. #1}
-\newcommand{\style}[1]{\textbf{\colorbox[rgb]{0.9,1,0.9}{Стилистическая заметка}}. #1}
-\newcommand{\important}[1]{\textbf{\colorbox[rgb]{1,0.9,0.9}{Важно}!} #1}
-\newcommand{\note}[1]{\textbf{\colorbox[rgb]{1,1,0.9}{Замечание}}. #1}
-\newcommand{\task}[1]{\textbf{Задача}. #1}
-\newcommand{\exercise}[1]{\textbf{Упражнение}. #1}
-
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
 
@@ -47,6 +42,39 @@
 \title{Язык C++}
 \author{Андрей Подшивалов}
 \date{\today}
+
+\newtcolorbox{sectionenv}[2][]{
+	colback=#1,
+	title=\textbf{#2},
+	coltitle=black,
+	colbacktitle=#1,
+	fonttitle=\normalsize,
+}
+
+\newcommand{\mathhelp}[1]{
+	\begin{sectionenv}[blue!30!white]{Математическая справка}
+		#1
+	\end{sectionenv}
+}
+\newcommand{\stat}[1]{\textbf{Утверждение}. #1}
+\newcommand{\style}[1]{
+	\begin{sectionenv}[green!30!white]{Стилистическая заметка}
+		#1
+	\end{sectionenv}
+}
+\newcommand{\important}[1]{
+	\begin{sectionenv}[red!30!white]{Важно!}
+		#1
+	\end{sectionenv}
+}
+\newcommand{\note}[1]{
+	\begin{sectionenv}[yellow!30!white]{Замечание}
+		#1
+	\end{sectionenv}
+}
+\newcommand{\task}[1]{\textbf{Задача}. #1}
+\newcommand{\exercise}[1]{\textbf{Упражнение}. #1}
+
 
 \begin{document}
 	\lstset{language=C++, tabsize=4, numbers=left,  backgroundcolor=\color{backcolour},		commentstyle=\color{codegreen}, keywordstyle=\color{magenta}, numberstyle=\tiny\color{codegray}, stringstyle=\color{codepurple},	basicstyle=\ttfamily\footnotesize, showstringspaces=false}
